@@ -1,4 +1,60 @@
-@import url('../css/global.css');
+/* global */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    --pink: hsl(322, 100%, 66%);
+    --light-pink: hsl(321, 100%, 78%);
+    --light-red: hsl(0, 100%, 63%);
+    --very-dark-cyan: hsl(192, 100%, 9%);
+    --very-pale-blue:  hsl(207, 100%, 98%);
+    --white: white;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+}
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+main {
+    width: 100vw;
+    color: var(--very-dark-cyan);
+    text-align: center;
+}
+main section {
+    width: 100%;
+    padding: 3rem;
+}
+main section img {
+    width: 100%;
+}
+footer {
+    padding: 2rem;
+    gap: 5rem;
+
+    background-color: var(--very-dark-cyan);
+    color: var(--very-pale-blue);
+}
+footer section {
+    gap: 2rem;
+}
+button {
+    border-radius: 2rem;
+    border: none;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.flex-row {
+    display: flex;
+}
 
 /* header */
 .header {
@@ -19,12 +75,14 @@
 
 /* main */
 .pink-button {
-    margin: 3rem 0 5rem;
+    width: fit-content;
+    margin: 3rem auto 5rem;
     padding: 1rem 3rem;
 
     background-color: var(--pink);
     color: var(--white);
     box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.4);
+    font-weight: bold;
 }
 
 .section-1 {
@@ -33,28 +91,30 @@
 
 .section-2 {
     padding: 8rem 0;
-    position: relative;
     gap: 5rem;
+}
+.section-2 div {
+    position: relative;
 }
 .section-2 h2 {
     font-size: 4rem;
     font-weight: 400;
 }
-.section-2 div::before {
+.section-2 h2::before {
     content: '';
     width: 2rem;
     height: 2rem;
     position: absolute;
-    left: 6rem;
+    left: 25%;
     background-repeat: no-repeat;
     background-size: contain;
 }
-.section-2 div:first-child::before {
-    top: 6.5rem;
+.section-2 div:first-child h2::before {
+    top: -1rem;
     background-image: url('../images/icon-communities.svg');
 }
-.section-2 div:last-child::before {
-    top: 19rem;
+.section-2 div:last-child h2::before {
+    top: -1rem;
     background-image: url('../images/icon-messages.svg');
 }
 
@@ -81,10 +141,10 @@
     position: absolute;
     left: 0;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 .grow::before {
-    top: -6.5rem;
+    top: -9.5rem;
     background-image: url('../images/bg-section-top-mobile-1.svg');
 }
 .grow::after {
@@ -92,7 +152,7 @@
     background-image: url('../images/bg-section-bottom-mobile-1.svg');
 }   
 .user::before {
-    top: -5.5rem;
+    top: -9.5rem;
     background-image: url('../images/bg-section-top-mobile-2.svg');
 }
 .user::after {
@@ -108,29 +168,32 @@
 .footer {
     position: relative;
 }
+.newsletter h3 {
+    text-transform: uppercase;
+}
 .newsletter::before {
     content: '';
     width: 100vw;
     height: 4rem;
     position: absolute;
-    top: -3rem;
+    top: -3.9rem;
     left: 0;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-image: url('../images/bg-footer-top-mobile.svg');
 }
-
 .form {
     gap: .8rem;
 }
 input {
+    width: 100%;
     height: 3rem;
 
     border-radius: .5rem;
 }
 .footer-button {
     width: fit-content;
-    padding: 1rem 3rem;
+    padding: .7rem 3rem;
     align-self: self-end;
 
     border-radius: .5rem;
@@ -176,6 +239,20 @@ input {
     color: var(--white);
 }
 
+/* invalid */
+.error {
+    display: none;
+    padding-top: .3rem;
+    font-size: .7rem;
+}
+input:invalid {
+    border: 1px solid red;
+}
+input:invalid + .error {
+    display: block;
+    color: rgba(255, 0, 0, 0.5);
+}
+
 @media (min-width: 1000px) {
     .flex-row-desktop {
         flex-direction: row;
@@ -183,9 +260,30 @@ input {
     .flex-row-reverse {
         flex-direction: row-reverse;
     }
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2.8rem;
+    }
+    p {
+        font-size: 1.2rem;
+        white-space: pre-line;
+    }
+    .pink-button {
+        padding: 1.5rem 6rem;
 
+        border-radius: 3rem;
+    }
     .header {
         padding: 3rem;
+    }
+    .logo {
+        width: 15rem;
+    }
+    .header-button {
+        padding: .6rem 2rem;
+        font-size: 1.2rem;
     }
     .section-1, .section-2, .section-4 {
         padding: 10rem;
@@ -194,12 +292,86 @@ input {
         padding: 5rem;
     }
 
+    .section-2 {
+        padding: 0 0 15rem;
+        justify-content: space-around;
+    }
+    .section-2 h2 {
+        font-size: 6rem;
+    }
+    .section-2 h2::before {
+        left: 0;
+    }
+
+    .section-3 {
+        text-align: left;
+    }
     .section-3 img {
         width: 45%;
     }
+    .grow::before {
+        top: -8.5rem;
+        background-image: url('../images/bg-section-top-desktop-1.svg');
+    }
+    .grow::after {
+        bottom: -9.5rem;
+        background-image: url('../images/bg-section-bottom-desktop-1.svg');
+    }   
+    .user::before {
+        top: -8.5rem;
+        background-image: url('../images/bg-section-top-desktop-2.svg');
+    }
+    .user::after {
+        bottom: -9.5rem;
+        background-image: url('../images/bg-section-bottom-desktop-2.svg');
+    }
+
+    .section-4 {
+        padding: 19rem 0 15rem;
+    }
+
+    .footer {
+        justify-content: space-between;
+    }
+    .newsletter::before {
+        height: 10rem;
+        top: -9.8rem;
+        background-image: url('../images/bg-footer-top-desktop.svg');
+    }
+    .logo-footer {
+        width: 15rem;
+    }
+    .newsletter h3 {
+        font-size: 2rem;
+    }
+    .newsletter input {
+        width: 20rem;
+    }
+    .footer-button {
+        align-self: self-start;
+    }
+
     .attribution {
         position: absolute;
         bottom: 0;
         white-space: normal;
+    }
+
+    /* hover */
+    button:hover {
+        cursor: pointer;
+    }
+    .header-button:hover {
+        color: var(--light-pink);
+        border-color: var(--light-pink);
+    }
+    :is(.pink-button, .footer-button):hover {
+        background-color: var(--light-pink);
+    }
+    .icon:hover {
+        color: aqua;
+    }
+    a:hover {
+        color: var(--pink);
     }
 }
